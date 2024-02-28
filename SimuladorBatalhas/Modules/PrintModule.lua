@@ -1,0 +1,21 @@
+local PrintModule = {}
+
+function PrintModule.PrintHeader()
+    print([[
+    ========================================================
+                    SIMULADOR DE BATALHA
+    ========================================================
+        Você empunha sua espada e se prepara para lutar.
+                     É hora da batalha!
+    ]])
+end
+
+function PrintModule.PrintString(String)
+    print(" | " .. String)
+end
+
+function PrintModule.PrintEmptyLine()
+    PrintModule.PrintString("")
+end
+
+return PrintModule
