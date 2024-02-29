@@ -18,4 +18,12 @@ function PrintModule.PrintEmptyLine()
     PrintModule.PrintString("")
 end
 
+function PrintModule.PrintDefeat()
+    PrintModule.PrintString("Você perdeu! Tente melhor da próxima vez.")
+end
+
+function PrintModule.PrintVictory()
+    PrintModule.PrintString("Você venceu! Um bravo guerreiro!")
+end
+
 return PrintModule

@@ -27,7 +27,7 @@ function BossModule.IsAlive()
 end
 
 function BossModule.DisplayBossHealth()
-    print(" | Vida do Boss " 
+    print(" | Vida do Boss    " 
         .. Utils.GetAttString(BossModule.MaxHealth, BossModule.CurrentHealth))
 end
 
@@ -53,6 +53,27 @@ end
 
 function BossModule.TakeDamage(CurrentDamage)
     BossModule.CurrentHealth = math.max(0, BossModule.CurrentHealth - CurrentDamage)
+end
+
+function BossModule.GetAttackDamage()
+    return math.random(BossModule.CurrentDamage.Min, BossModule.CurrentDamage.Max)
+end
+
+local Actions = {
+    function()
+        local AttackDamage = BossModule.GetAttackDamage()
+        PrintModule.PrintEmptyLine()
+        PrintModule.PrintString(string.format(
+                "Boss atacou o jogador, causando %d de dano", AttackDamage)
+            )
+
+        local PlayerModule = require("SimuladorBatalhas.Modules.PlayerModule")
+        PlayerModule.TakeDamage(AttackDamage)
+    end
+}
+
+function BossModule.RegisterRandomAction()
+    Actions[math.random(1, #Actions)]()
 end
 
 return BossModule

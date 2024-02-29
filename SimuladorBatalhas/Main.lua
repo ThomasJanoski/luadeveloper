@@ -18,12 +18,24 @@ while PlayerModule.IsAlive() and BossModule.IsAlive() do
 
     print(" | Digite a sua próxima ação: ")
     local ActionNumber = io.read()
-    while type(ActionNumber) ~= "number" or not PlayerModule.IsValidAction(ActionNumber) do
+    while type(ActionNumber) ~= "string" or not PlayerModule.IsValidAction(ActionNumber) do
         print(" | Ação inválida, por favor, tente novamente.")
         print(" | Digite a sua próxima ação: ")
 
-        local ActionNumber = io.read()
+        ActionNumber = io.read()
     end
 
     PlayerModule.RegisterAction(ActionNumber)
+    BossModule.RegisterRandomAction()
+
+    PrintModule.PrintEmptyLine()
+end
+
+PlayerModule.DisplayPlayerHealth() 
+BossModule.DisplayBossHealth()
+
+if BossModule.IsAlive() then
+    PrintModule.PrintDefeat()
+else
+    PrintModule.PrintVictory()
 end
